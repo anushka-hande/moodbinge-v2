@@ -1,0 +1,465 @@
+/* frontend/src/pages/Recommendations.css */
+.recommendations-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.recommendations-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.recommendations-header h1 {
+  color: #6200ea;
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+.mood-highlight {
+  font-weight: 700;
+}
+
+.change-mood-btn {
+  display: inline-block;
+  background: var(--primary-gradient);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all var(--transition-normal);
+  border: none;
+}
+
+.change-mood-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-medium);
+}
+
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1.5rem;
+}
+
+.movie-item {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+}
+
+.recommendations-error,
+.recommendations-empty {
+  text-align: center;
+  padding: 3rem 1rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  margin-top: 2rem;
+}
+
+.recommendations-error p,
+.recommendations-empty p {
+  color: #6c757d;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+}
+
+/* ================================================================
+   🎯 PROFESSIONAL SESSION INFO BAR
+   ================================================================ */
+
+.session-info-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 16px 24px;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.session-stats {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.stats-detail {
+  opacity: 0.9;
+  font-weight: 400;
+  margin-left: 8px;
+}
+
+.refresh-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.refresh-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.refresh-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ================================================================
+   🎯 PROFESSIONAL ENHANCED BADGES (REPOSITIONED)
+   ================================================================ */
+
+.enhanced-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px; /* MOVED FROM RIGHT TO LEFT */
+  background: linear-gradient(135deg, #ffd700, #ffed4e);
+  color: #333;
+  border-radius: 6px;
+  padding: 2px 6px;
+  font-size: 10px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(255, 215, 0, 0.4);
+  z-index: 10;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Hide enhanced badge by default for cleaner look */
+.enhanced-badge {
+  display: none;
+}
+
+/* Show enhanced badge only on hover for subtle professionalism */
+.movie-item:hover .enhanced-badge {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ================================================================
+   🎯 PROFESSIONAL LOADING STATES
+   ================================================================ */
+
+.loading-message {
+  text-align: center;
+  margin: 24px 0;
+  color: #666;
+}
+
+.loading-message p {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.loading-sub {
+  font-size: 14px;
+  color: #999;
+  font-weight: 400;
+}
+
+/* ================================================================
+   🎯 PROFESSIONAL SUMMARY SECTION
+   ================================================================ */
+
+.recommendations-summary {
+  margin-bottom: 24px;
+  text-align: center;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(98, 0, 234, 0.1);
+}
+
+.summary-text {
+  color: #666;
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* ================================================================
+   🎯 PROFESSIONAL ACTION BUTTONS
+   ================================================================ */
+
+.recommendations-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  flex-wrap: wrap;
+}
+
+.refresh-large {
+  padding: 14px 28px;
+  font-size: 16px;
+  font-weight: 600;
+  min-width: 220px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.refresh-large::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.refresh-large:hover:not(:disabled)::before {
+  left: 100%;
+}
+
+.refresh-large:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(102, 126, 234, 0.4);
+}
+
+.refresh-large:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+}
+
+/* ================================================================
+   🎯 PROFESSIONAL BUTTON SYSTEM
+   ================================================================ */
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+  text-align: center;
+  font-size: 14px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #6200ea, #7c4dff);
+  color: white;
+  box-shadow: 0 2px 8px rgba(98, 0, 234, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(98, 0, 234, 0.4);
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, #6c757d, #5a6268);
+  color: white;
+  box-shadow: 0 2px 8px rgba(108, 117, 125, 0.3);
+}
+
+.btn-secondary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(108, 117, 125, 0.4);
+}
+
+.btn-outline {
+  background: transparent;
+  color: #6200ea;
+  border: 2px solid #6200ea;
+  font-weight: 600;
+}
+
+.btn-outline:hover {
+  background: #6200ea;
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(98, 0, 234, 0.3);
+}
+
+/* ================================================================
+   🎯 PROFESSIONAL ERROR HANDLING
+   ================================================================ */
+
+.header-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.error-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+/* ================================================================
+   📱 RESPONSIVE DESIGN IMPROVEMENTS
+   ================================================================ */
+
+@media (max-width: 768px) {
+  .recommendations-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .movie-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+  
+  .session-info-bar {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .session-stats {
+    flex-direction: column;
+    gap: 6px;
+    text-align: center;
+  }
+  
+  .stats-detail {
+    margin-left: 0;
+    margin-top: 4px;
+  }
+  
+  .recommendations-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .refresh-large {
+    min-width: unset;
+    width: 100%;
+    max-width: 320px;
+  }
+  
+  .error-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .error-actions .btn {
+    width: 100%;
+    max-width: 220px;
+  }
+}
+
+@media (max-width: 480px) {
+  .movie-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .session-info-bar {
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  
+  .refresh-btn {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+  
+  .enhanced-badge {
+    font-size: 9px;
+    padding: 1px 4px;
+    top: 6px;
+    left: 6px;
+  }
+  
+  .recommendations-summary {
+    padding: 8px 0;
+  }
+  
+  .summary-text {
+    font-size: 13px;
+  }
+}
+
+/* ================================================================
+   🎯 ACCESSIBILITY IMPROVEMENTS
+   ================================================================ */
+
+.refresh-btn:focus,
+.refresh-large:focus,
+.btn:focus {
+  outline: 2px solid #6200ea;
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .session-info-bar {
+    border: 2px solid white;
+  }
+  
+  .enhanced-badge {
+    border: 2px solid #333;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .refresh-btn,
+  .refresh-large,
+  .btn,
+  .enhanced-badge {
+    transition: none;
+  }
+  
+  .refresh-large::before {
+    display: none;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+}

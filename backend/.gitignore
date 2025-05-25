@@ -1,0 +1,33 @@
+# Environment variables (CRITICAL)
+.env
+.env.local
+.env.production
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+moodbinge.db
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Data files (MovieLens dataset)
+data/
+*.csv
+
+# Logs
+*.log
+logs/
+
+# Cache
+.cache/

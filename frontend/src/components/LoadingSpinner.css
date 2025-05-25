@@ -1,0 +1,145 @@
+/* frontend/src/components/LoadingSpinner.css */
+
+.spinner-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: var(--spacing-xl);
+  text-align: center;
+  gap: var(--spacing-lg);
+}
+
+/* Base spinner styles */
+.spinner {
+  border-radius: var(--radius-full);
+  position: relative;
+  overflow: hidden;
+}
+
+.spinner-small {
+  width: 32px;
+  height: 32px;
+}
+
+.spinner-medium {
+  width: 48px;
+  height: 48px;
+}
+
+.spinner-large {
+  width: 64px;
+  height: 64px;
+}
+
+/* Default spinner */
+.spinner-default {
+  border: 3px solid var(--surface-primary);
+  border-top-color: var(--primary-color);
+  animation: spin 1s linear infinite;
+  will-change: transform;
+}
+
+/* Gradient spinner */
+.spinner-gradient {
+  background: conic-gradient(
+    from 0deg,
+    var(--primary-color),
+    var(--secondary-color),
+    var(--primary-color)
+  );
+  animation: spin 1.2s linear infinite;
+  will-change: transform;
+}
+
+.spinner-gradient::before {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  right: 3px;
+  bottom: 3px;
+  background: var(--background-primary);
+  border-radius: var(--radius-full);
+}
+
+/* Dots spinner */
+.spinner-dots-wrapper {
+  display: flex;
+  gap: var(--spacing-xs);
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner-dot {
+  border-radius: var(--radius-full);
+  background: var(--primary-color);
+  animation: dot-bounce 1.4s ease-in-out infinite both;
+  will-change: transform, opacity;
+}
+
+.spinner-small .spinner-dot {
+  width: 6px;
+  height: 6px;
+}
+
+.spinner-medium .spinner-dot {
+  width: 8px;
+  height: 8px;
+}
+
+.spinner-large .spinner-dot {
+  width: 12px;
+  height: 12px;
+}
+
+.spinner-dot:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.spinner-dot:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+.spinner-text {
+  color: var(--text-secondary);
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  max-width: 300px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Optimized animations */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dot-bounce {
+  0%, 80%, 100% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Pulsing effect for container */
+.spinner-container {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,402 @@
+/* frontend/src/components/skeletons/Skeleton.css */
+
+/* Base skeleton animation - optimized for performance */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Base skeleton styles */
+.skeleton-base {
+  background: var(--surface-primary);
+  border-radius: var(--radius-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+.skeleton-base::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--surface-hover) 50%,
+    transparent 100%
+  );
+  animation: shimmer 1.5s infinite;
+  will-change: transform;
+}
+
+/* Movie Card Skeleton */
+.skeleton-card {
+  background: var(--gradient-card);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-small);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.skeleton-poster {
+  background: var(--surface-primary);
+  width: 100%;
+  aspect-ratio: 2/3;
+  position: relative;
+  overflow: hidden;
+}
+
+.skeleton-poster::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--surface-hover) 50%,
+    transparent 100%
+  );
+  animation: shimmer 1.5s infinite;
+  will-change: transform;
+}
+
+.skeleton-content {
+  padding: var(--spacing-md);
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.skeleton-title,
+.skeleton-subtitle,
+.skeleton-text {
+  background: var(--surface-primary);
+  border-radius: var(--radius-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+.skeleton-title::after,
+.skeleton-subtitle::after,
+.skeleton-text::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--surface-hover) 50%,
+    transparent 100%
+  );
+  animation: shimmer 1.5s infinite;
+  will-change: transform;
+}
+
+.skeleton-title {
+  height: 1.25rem;
+  width: 85%;
+  margin-bottom: var(--spacing-xs);
+}
+
+.skeleton-subtitle {
+  height: 1rem;
+  width: 60%;
+}
+
+.skeleton-text {
+  height: 0.875rem;
+  width: 70%;
+}
+
+.skeleton-text.short {
+  width: 45%;
+}
+
+/* Mood Card Skeleton */
+.skeleton-mood-card {
+  background: var(--gradient-card);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  text-align: center;
+  box-shadow: var(--shadow-small);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-md);
+  height: 100%;
+  min-height: 200px;
+}
+
+.skeleton-icon {
+  background: var(--surface-primary);
+  width: 4rem;
+  height: 4rem;
+  border-radius: var(--radius-full);
+  position: relative;
+  overflow: hidden;
+}
+
+.skeleton-icon::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--surface-hover) 50%,
+    transparent 100%
+  );
+  animation: shimmer 1.5s infinite;
+  will-change: transform;
+}
+
+.skeleton-mood-title,
+.skeleton-mood-desc {
+  background: var(--surface-primary);
+  border-radius: var(--radius-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+.skeleton-mood-title::after,
+.skeleton-mood-desc::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--surface-hover) 50%,
+    transparent 100%
+  );
+  animation: shimmer 1.5s infinite;
+  will-change: transform;
+}
+
+.skeleton-mood-title {
+  height: 1.5rem;
+  width: 70%;
+}
+
+.skeleton-mood-desc {
+  height: 1rem;
+}
+
+.skeleton-mood-desc.line1 {
+  width: 90%;
+}
+
+.skeleton-mood-desc.line2 {
+  width: 85%;
+}
+
+.skeleton-mood-desc.line3 {
+  width: 60%;
+}
+
+/* Movie Detail Skeleton */
+.skeleton-movie-detail {
+  position: relative;
+  min-height: 100vh;
+}
+
+.skeleton-backdrop {
+  background: var(--surface-primary);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 400px;
+  position: relative;
+  overflow: hidden;
+}
+
+.skeleton-backdrop::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--surface-hover) 50%,
+    transparent 100%
+  );
+  animation: shimmer 1.5s infinite;
+  will-change: transform;
+}
+
+.skeleton-detail-content {
+  padding-top: 60px;
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: var(--spacing-md);
+  padding-right: var(--spacing-md);
+}
+
+.skeleton-detail-main {
+  display: flex;
+  gap: var(--spacing-xl);
+  margin-bottom: var(--spacing-2xl);
+}
+
+.skeleton-detail-poster,
+.skeleton-detail-title,
+.skeleton-meta-item,
+.skeleton-overview-title,
+.skeleton-overview-text {
+  background: var(--surface-primary);
+  border-radius: var(--radius-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+.skeleton-detail-poster::after,
+.skeleton-detail-title::after,
+.skeleton-meta-item::after,
+.skeleton-overview-title::after,
+.skeleton-overview-text::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--surface-hover) 50%,
+    transparent 100%
+  );
+  animation: shimmer 1.5s infinite;
+  will-change: transform;
+}
+
+.skeleton-detail-poster {
+  flex: 0 0 300px;
+  aspect-ratio: 2/3;
+}
+
+.skeleton-detail-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.skeleton-detail-title {
+  height: 3rem;
+  width: 80%;
+}
+
+.skeleton-detail-meta {
+  display: flex;
+  gap: var(--spacing-lg);
+}
+
+.skeleton-meta-item {
+  height: 1.25rem;
+  width: 80px;
+}
+
+.skeleton-overview {
+  background: var(--surface-secondary);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.skeleton-overview-title {
+  height: 1.5rem;
+  width: 120px;
+  margin-bottom: var(--spacing-md);
+}
+
+.skeleton-overview-text {
+  height: 1rem;
+}
+
+.skeleton-overview-text.line1 {
+  width: 100%;
+}
+
+.skeleton-overview-text.line2 {
+  width: 95%;
+}
+
+.skeleton-overview-text.line3 {
+  width: 88%;
+}
+
+.skeleton-overview-text.line4 {
+  width: 60%;
+}
+
+/* Grid Layouts */
+.skeleton-grid.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.skeleton-grid.mood-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .skeleton-detail-main {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .skeleton-detail-poster {
+    max-width: 250px;
+  }
+  
+  .skeleton-grid.movie-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: var(--spacing-md);
+  }
+  
+  .skeleton-grid.mood-grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .skeleton-mood-card {
+    padding: var(--spacing-lg);
+  }
+}

@@ -1,0 +1,215 @@
+/* frontend/src/components/MoodCard.css */
+.mood-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: var(--spacing-xl);  /* Increased from lg */
+  border-radius: var(--radius-xl);
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  box-shadow: var(--shadow-small);
+  transition: all var(--transition-slow);
+  height: 240px;  /* Increased from 200px */
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transform-origin: center;
+  will-change: transform, height;
+}
+
+.mood-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%, rgba(0,0,0,0.1) 100%);
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+  pointer-events: none;
+}
+
+.mood-card:hover::before {
+  opacity: 1;
+}
+
+.mood-card:hover,
+.mood-card-hovered {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  height: 340px;  /* Reduced from 380px */
+}
+
+.mood-card:active {
+  transform: translateY(-8px) scale(0.98);
+  transition: all 0.1s ease;
+}
+
+.mood-icon-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--spacing-xs);  /* Reduced spacing */
+  margin-top: var(--spacing-md);
+}
+
+.mood-icon {
+  font-size: 3.5rem;
+  transition: all var(--transition-normal);
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+.mood-card:hover .mood-icon {
+  transform: scale(1.1) rotate(5deg);
+  animation: bounce 0.6s ease-in-out;
+}
+
+.mood-pulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform var(--transition-normal);
+  z-index: 1;
+}
+
+.mood-card:hover .mood-pulse {
+  transform: translate(-50%, -50%) scale(1.3);
+  opacity: 0;
+  transition: all 0.8s ease-out;
+}
+
+.mood-name {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  margin: 0;  /* Remove all margins */
+  text-transform: capitalize;
+  transition: all var(--transition-normal);
+  position: relative;
+  z-index: 2;
+}
+
+.mood-card:hover .mood-name {
+  transform: translateY(-2px);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.mood-description {
+  font-size: var(--font-size-sm);
+  line-height: 1.5;
+  margin: var(--spacing-sm) 0 0 0;  /* Changed from xs to sm for more space */
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 0;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all var(--transition-slow);
+  max-height: 0;
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+  font-weight: 500;
+  width: 95%;
+  text-align: center;
+}
+
+.mood-card:hover .mood-description,
+.mood-description-visible {
+  opacity: 1;
+  transform: translateY(0);
+  max-height: 100px;  /* Reduced from 160px */
+}
+
+.mood-glow {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity var(--transition-slow);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.mood-card:hover .mood-glow {
+  opacity: 1;
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+/* Animations */
+@keyframes bounce {
+  0%, 100% { transform: scale(1.1) rotate(5deg); }
+  50% { transform: scale(1.2) rotate(-2deg); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .mood-card {
+    height: 180px;  /* Changed from 160px */
+  }
+
+  .mood-icon {
+    font-size: 3rem;
+  }
+  
+  .mood-name {
+    font-size: var(--font-size-lg);
+  }
+  
+  .mood-description {
+    font-size: var(--font-size-xs);
+  }
+}
+
+@media (max-width: 768px) {
+  .mood-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: var(--spacing-2xl);  /* Increased spacing */
+    margin-top: var(--spacing-xl);
+    padding-bottom: var(--spacing-2xl);
+    max-width: 1300px;  /* Increased from 1200px */
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .mood-card {
+    height: 140px;
+    padding: var(--spacing-lg);
+  }
+  
+  .mood-card:hover,
+  .mood-card-hovered {
+    transform: translateY(-6px) scale(1.01);
+  }
+  
+  .mood-icon {
+    font-size: 2.5rem;
+  }
+}
+
+/* Focus states for accessibility */
+.mood-card:focus-visible {
+  outline: 3px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 4px;
+}

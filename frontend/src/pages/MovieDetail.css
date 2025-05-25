@@ -1,0 +1,178 @@
+/* frontend/src/pages/MovieDetail.css */
+.movie-detail {
+  position: relative;
+}
+
+.movie-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 400px;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.3);
+  z-index: -1;
+}
+
+.movie-content {
+  padding-top: 60px;
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.movie-main {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.movie-poster-large {
+  flex: 0 0 300px;
+  position: relative;
+}
+
+.movie-poster-large img {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.movie-rating-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 50%;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.movie-info-large {
+  flex: 1;
+  color: var(--text-primary);
+}
+
+.movie-backdrop + .movie-content .movie-info-large {
+  color: white;
+}
+
+.movie-info-large h1 {
+  margin-bottom: 0.5rem;
+  font-size: 2.5rem;
+  color: white;
+}
+
+.movie-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.movie-year, .movie-runtime {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.movie-genres-large {
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.movie-tagline {
+  font-style: italic;
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  color: var(--secondary-color);
+}
+
+.movie-overview, .movie-companies {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+  color: #333; /* Dark text on light background */
+}
+
+.movie-overview h3, .movie-companies h3 {
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.movie-overview p, .movie-companies p {
+  line-height: 1.6;
+}
+
+.movie-actions {
+  margin-top: 1.5rem;
+}
+
+.similar-movies {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-primary);
+}
+
+.similar-movies h2 {
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+}
+
+.no-similar-movies {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-primary);
+  text-align: center;
+}
+
+.no-similar-movies h2 {
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.no-similar-movies p {
+  color: var(--text-secondary);
+}
+
+.error-container {
+  text-align: center;
+  padding: 3rem;
+}
+
+.error-container .btn {
+  margin-top: 1rem;
+}
+
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .movie-main {
+    flex-direction: column;
+  }
+  
+  .movie-poster-large {
+    max-width: 250px;
+    margin: 0 auto;
+  }
+  
+  .movie-content {
+    padding: 1rem;
+  }
+  
+  .movie-info-large h1 {
+    font-size: 1.75rem;
+  }
+}

@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  api:
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=sqlite:///./moodbinge.db
+      - SECRET_KEY=${SECRET_KEY}
+      - TMDB_API_KEY=${TMDB_API_KEY}
+      - DATA_PATH=data/ml-latest-small/
+    volumes:
+      - ./backend/data:/app/data
+      - ./backend/moodbinge.db:/app/moodbinge.db
+    env_file:
+      - ./backend/.env
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - VITE_API_URL=${VITE_API_URL:-http://localhost:8000/api/v1}
+    depends_on:
+      - api
+    restart: unless-stopped
