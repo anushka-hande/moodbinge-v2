@@ -1,4 +1,4 @@
-# backend/app/api/endpoints/recommendations.py
+# backend/app/api/v1/endpoints/recommendations.py
 import time 
 import numpy as np
 import pandas as pd

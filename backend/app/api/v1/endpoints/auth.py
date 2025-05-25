@@ -1,4 +1,4 @@
-# backend/app/api/endpoints/auth.py
+# backend/app/api/v1/endpoints/auth.py
 from datetime import timedelta
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm

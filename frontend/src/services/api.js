@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // Use environment variable for API URL
-const API_URL = import.meta.env.VITE_API_URL || 'https://anushkah39.pythonanywhere.com/api/v1/movies';
+const API_URL = import.meta.env.VITE_API_URL || 'https://anushkah39.pythonanywhere.com/api/v1';
 
 // Create axios instance with default configuration
 const apiClient = axios.create({
@@ -135,7 +135,7 @@ export const authAPI = {
 
 export const getMoods = async () => {
   try {
-    const response = await apiClient.get('/moods'); // Fixed URL path
+    const response = await apiClient.get('/movies/moods'); // Fixed URL path
     return response.data;
   } catch (error) {
     console.error('Error fetching moods:', error);
@@ -176,7 +176,7 @@ export const getRecommendations = async (mood, limit = 10, options = {}) => {
       sessionId: finalSessionId 
     });
     
-    const response = await apiClient.get(`/recommendations/${mood}`, { params });
+    const response = await apiClient.get(`/movies/recommendations/${mood}`, { params });
     
     console.log(`✅ Received ${response.data.length} recommendations`);
     return response.data;
@@ -189,7 +189,7 @@ export const getRecommendations = async (mood, limit = 10, options = {}) => {
 // Get original system recommendations (for comparison)
 export const getOriginalRecommendations = async (mood, limit = 10) => {
   try {
-    const response = await apiClient.get(`/recommendations/original/${mood}`, {
+    const response = await apiClient.get(`/movies/recommendations/original/${mood}`, {
       params: { limit }
     });
     return response.data;
@@ -203,7 +203,7 @@ export const getOriginalRecommendations = async (mood, limit = 10) => {
 export const compareRecommendations = async (mood, limit = 10) => {
   try {
     const sessionId = getSessionId();
-    const response = await apiClient.get(`/compare/${mood}`, {
+    const response = await apiClient.get(`/movies/compare/${mood}`, {
       params: { limit, session_id: sessionId }
     });
     return response.data;
@@ -217,7 +217,7 @@ export const compareRecommendations = async (mood, limit = 10) => {
 export const getSessionStats = async (sessionId = null) => {
   try {
     const finalSessionId = sessionId || getSessionId();
-    const response = await apiClient.get(`/session/${finalSessionId}/stats`);
+    const response = await apiClient.get(`/movies/session/${finalSessionId}/stats`);
     return response.data;
   } catch (error) {
     console.error('Error fetching session stats:', error);
@@ -229,7 +229,7 @@ export const getSessionStats = async (sessionId = null) => {
 export const clearServerSession = async (sessionId = null) => {
   try {
     const finalSessionId = sessionId || getSessionId();
-    const response = await apiClient.delete(`/session/${finalSessionId}`);
+    const response = await apiClient.delete(`/movies/session/${finalSessionId}`);
     return response.data;
   } catch (error) {
     console.error('Error clearing server session:', error);
@@ -239,7 +239,7 @@ export const clearServerSession = async (sessionId = null) => {
 
 export const getSimilarMovies = async (movieId, limit = 5) => {
   try {
-    const response = await apiClient.get(`/similar/${movieId}`, {
+    const response = await apiClient.get(`/movies/similar/${movieId}`, {
       params: { limit }
     });
     return response.data;
@@ -251,7 +251,7 @@ export const getSimilarMovies = async (movieId, limit = 5) => {
 
 export const getMovieDetails = async (movieId) => {
   try {
-    const response = await apiClient.get(`/movie/${movieId}`);
+    const response = await apiClient.get(`/movies/movie/${movieId}`);
     return response.data;
   } catch (error) {
     console.error('Error fetching movie details:', error);
@@ -261,7 +261,7 @@ export const getMovieDetails = async (movieId) => {
 
 export const analyzeMoodText = async (text) => {
   try {
-    const response = await apiClient.post('/analyze-mood', { text });
+    const response = await apiClient.post('/movies/analyze-mood', { text });
     console.log('Mood analysis response:', response.data);
     return response.data;
   } catch (error) {
@@ -284,7 +284,7 @@ export const analyzeMoodText = async (text) => {
 // Enhanced API health check
 export const checkAPIHealth = async () => {
   try {
-    const response = await apiClient.get('/health');
+    const response = await apiClient.get('/movies/health');
     return response.data;
   } catch (error) {
     console.error('API health check failed:', error);
