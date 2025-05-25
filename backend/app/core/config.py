@@ -37,7 +37,7 @@ class Settings:
     BACKEND_CORS_ORIGINS: List[str] = [
         "http://localhost:3000",
         "http://localhost:5173",
-        "https://your-app.vercel.app",  # Update this with your Vercel URL
+        "https://moodbinge-v2.vercel.app",  # Update this with your Vercel URL
     ]
     
     # Add your custom domain when you get one

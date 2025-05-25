@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // Use environment variable for API URL
-const API_URL = import.meta.env.VITE_API_URL || 'https://anushkah39.pythonanywhere.com/api/v1';
+const API_URL = import.meta.env.VITE_API_URL || 'https://anushkah39.pythonanywhere.com/api/v1/movies';
 
 // Create axios instance with default configuration
 const apiClient = axios.create({
