@@ -1,3 +1,4 @@
+#backend\app\core\config.py
 import os
 from typing import List
 from dotenv import load_dotenv
@@ -37,7 +38,7 @@ class Settings:
     BACKEND_CORS_ORIGINS: List[str] = [
         "http://localhost:3000",
         "http://localhost:5173",
-        "https://moodbinge-v2.vercel.app",  # Update this with your Vercel URL
+        "https://moodbinge.vercel.app",  # Update this with your Vercel URL
     ]
     
     # Add your custom domain when you get one

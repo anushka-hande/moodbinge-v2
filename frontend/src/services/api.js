@@ -53,6 +53,7 @@ apiClient.interceptors.request.use(
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
+    // Continue without token if not available
     return config;
   },
   (error) => {
@@ -72,9 +73,10 @@ apiClient.interceptors.response.use(
       
       switch (status) {
         case 401:
-          // Unauthorized - clear token and redirect to login
+          // Unauthorized - clear token but don't redirect (optional auth)
           localStorage.removeItem('token');
-          window.location.href = '/login';
+          localStorage.removeItem('user');
+          console.warn('Authentication expired - continuing as anonymous user');
           break;
         case 422:
           // Validation error - pass through for handling

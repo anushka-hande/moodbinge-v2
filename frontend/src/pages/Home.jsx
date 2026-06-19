@@ -44,14 +44,9 @@ const Home = () => {
       <div className="hero">
         <h1>Find Movies That Match Your Mood</h1>
         <p>Discover personalized movie recommendations based on how you're feeling right now.</p>
-        {token ? (
+        <div className="hero-buttons">
           <Link to="/moods" className="btn btn-primary">Get Started</Link>
-        ) : (
-          <div className="hero-buttons">
-            <Link to="/login" className="btn btn-primary">Login</Link>
-            <Link to="/register" className="btn btn-secondary">Register</Link>
-          </div>
-        )}
+        </div>
       </div>
       
       <div className="features">

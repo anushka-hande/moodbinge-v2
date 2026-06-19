@@ -3,11 +3,13 @@
 .env.local
 .env.production
 .env.development
+**/*.env
 
 # Database files
 *.db
 *.sqlite
 *.sqlite3
+backend/*.db
 
 # Python
 __pycache__/
@@ -18,12 +20,20 @@ __pycache__/
 venv/
 env/
 ENV/
+backend/venv/
+*.pyc
+*.pyo
+
+# Python package directories
+*.egg-info/
+.eggs/
 
 # Node.js
 node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+frontend/node_modules/
 
 # Build outputs
 dist/
@@ -34,9 +44,15 @@ out/
 # IDE files
 .vscode/*
 !.vscode/extensions.json
+backend/.vscode/
+frontend/.vscode/
 .idea/
 *.swp
 *.swo
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
 
 # OS files
 .DS_Store
@@ -48,7 +64,14 @@ logs/
 
 # Docker
 .dockerignore
+.docker/
 
 # Temporary files
 .tmp/
 temp/
+
+# ML dataset (large data folder)
+backend/data/ml-latest-small/
+
+# Vercel cache (if using Vercel)
+.vercel

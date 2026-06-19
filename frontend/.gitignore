@@ -1,3 +1,4 @@
+# frontend\.gitignore
 # Dependencies
 node_modules/
 .pnp

@@ -35,7 +35,16 @@ const MoodTextInput = () => {
           navigate(`/recommendations/${result.mood}`);
         }, 1000);
       } else {
-        toast.error('Could not determine your mood. Please try again or choose from the options below.');
+        // Create a helpful error message with suggestions
+        let errorMessage = result.message || 'Could not determine your mood.';
+        
+        if (result.suggestions && result.suggestions.length > 0) {
+          // Take the first 2 suggestions to avoid overwhelming the user
+          const topSuggestions = result.suggestions.slice(0, 2);
+          errorMessage += ' ' + topSuggestions.join(' ');
+        }
+        
+        toast.error(errorMessage);
       }
     } catch (err) {
       console.error('Error analyzing mood:', err);

@@ -95,7 +95,12 @@ class TextAnalysisService:
             'in', 'on', 'at', 'by', 'for', 'with', 'without', 'to', 'from', 'of',
             'about', 'over', 'under', 'above', 'below', 'through', 'between', 'among',
             'during', 'before', 'after', 'since', 'until', 'while', 'and', 'or', 'but',
-            'so', 'because', 'if', 'when', 'where', 'why', 'how', 'what', 'which', 'who'
+            'so', 'because', 'if', 'when', 'where', 'why', 'how', 'what', 'which', 'who',
+
+            'vibes', 'chill', 'hyped', 'pumped', 'meh', 'blah', 'ok', 'okay', 'fine', 'alright',
+            'awesome', 'cool', 'sweet', 'rad', 'sick', 'lit', 'fire', 'dope', 'solid', 'decent',
+            'rough', 'tough', 'harsh', 'brutal', 'crazy', 'wild', 'intense', 'mild', 'gentle',
+            'mixed', 'complicated', 'weird', 'odd', 'different', 'unusual', 'random'
         }
         
         # Gibberish patterns to detect
@@ -185,11 +190,11 @@ class TextAnalysisService:
         confidence = 1.0
         
         # Penalty for low word quality
-        if word_quality_ratio < 0.3:
-            confidence *= 0.4
+        if word_quality_ratio < 0.2:
+            confidence *= 0.6
             validation_result['issues'].append("Most words don't appear to be meaningful")
-        elif word_quality_ratio < 0.6:
-            confidence *= 0.7
+        elif word_quality_ratio < 0.4:
+            confidence *= 0.8
             validation_result['issues'].append("Some words may not be meaningful")
         
         # Penalty for poor character composition
@@ -224,15 +229,13 @@ class TextAnalysisService:
                 break
         
         if not emotion_word_found:
-            confidence *= 0.8
-            validation_result['issues'].append("No clear emotion words detected")
-            validation_result['suggestions'].append("Try using emotion words like 'happy', 'sad', 'excited', 'calm', etc.")
-        
+            confidence *= 0.9
+            
         # Final validation decision
         validation_result['confidence'] = max(0.0, min(1.0, confidence))
         
         # Set validity threshold
-        if validation_result['confidence'] < 0.3:
+        if validation_result['confidence'] < 0.15:
             validation_result['is_valid'] = False
             if not validation_result['suggestions']:
                 validation_result['suggestions'].append("Try describing your current feelings or mood more clearly")
@@ -345,7 +348,7 @@ class TextAnalysisService:
             final_confidence = base_confidence * validation['confidence']
             
             # Additional confidence checks
-            if final_confidence < 0.4:
+            if final_confidence < 0.25:
                 return {
                     "mood": None,
                     "confidence": final_confidence,

@@ -12,17 +12,6 @@ import { useAuth } from './hooks/useAuth';
 import { ToastProvider } from './components/Toast/ToastContainer';
 import NotFound from './components/NotFound';
 
-// Protected route component
-const ProtectedRoute = ({ children }) => {
-  const { token } = useAuth();
-  
-  if (!token) {
-    return <Navigate to="/login" replace />;
-  }
-  
-  return children;
-};
-
 function App() {
   return (
     <ToastProvider>
@@ -38,25 +27,19 @@ function App() {
                 <Route 
                   path="/moods" 
                   element={
-                    <ProtectedRoute>
                       <MoodSelection />
-                    </ProtectedRoute>
                   } 
                 />
                 <Route 
                   path="/recommendations/:mood" 
                   element={
-                    <ProtectedRoute>
                       <Recommendations />
-                    </ProtectedRoute>
                   } 
                 />
                 <Route 
                   path="/movie/:id" 
                   element={
-                    <ProtectedRoute>
                       <MovieDetail />
-                    </ProtectedRoute>
                   } 
                 />
                 <Route 

@@ -16,9 +16,9 @@ const Navbar = () => {
       </div>
       <div className="navbar-menu">
         <ThemeToggle />
+        <Link to="/moods" className="navbar-item">Find Movies</Link>
         {token ? (
           <>
-            <Link to="/moods" className="navbar-item">Find Movies</Link>
             <span className="navbar-item navbar-username">Hi, {user}</span>
             <button className="navbar-item btn-link" onClick={logout}>Logout</button>
           </>

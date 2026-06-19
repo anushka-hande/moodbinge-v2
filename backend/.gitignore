@@ -1,3 +1,4 @@
+#backend\.gitignore
 # Environment variables (CRITICAL)
 .env
 .env.local
