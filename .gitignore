@@ -70,8 +70,5 @@ logs/
 .tmp/
 temp/
 
-# ML dataset (large data folder)
-backend/data/ml-latest-small/
-
 # Vercel cache (if using Vercel)
 .vercel
