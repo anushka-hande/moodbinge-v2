@@ -22,10 +22,6 @@ ENV/
 pip-log.txt
 pip-delete-this-directory.txt
 
-# Data files (MovieLens dataset)
-data/
-*.csv
-
 # Logs
 *.log
 logs/
